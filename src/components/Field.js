@@ -1,5 +1,6 @@
 import React from 'react';
 import LanguageContext from '../contexts/LanguageContext';
+import FieldJsx from '../templates/Field';
 
 class Field extends React.Component {
   static contextType = LanguageContext;
@@ -7,12 +8,7 @@ class Field extends React.Component {
   render() {
     const text = this.context === 'english' ? 'Name' : 'Naam';
 
-    return (
-      <div className="ui field">
-        <label>{text}</label>
-        <input />
-      </div>
-    );
+    return FieldJsx(text);
   }
 }
 
