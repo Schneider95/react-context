@@ -1,12 +1,5 @@
-import React from 'react';
-import Field from './Field';
-import Button from './Button';
+import UserCreateJsx from '../templates/UserCreate';
 
-const UserCreate = () => (
-  <div className="ui form">
-    <Field />
-    <Button />
-  </div>
-);
+const UserCreate = () => UserCreateJsx();
 
 export default UserCreate;
