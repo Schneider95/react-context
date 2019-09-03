@@ -12,17 +12,35 @@ class App extends React.Component {
     this.setState({ language });
   }
 
+  handleKeyUp = (language) => {
+    this.onLanguageChange(language);
+  }
+
   render() {
+    const { language } = this.state;
+
     return (
       <div className="ui container">
         <div>
           Select a language :
-          <i className="flag us" onClick={() => this.onLanguageChange('english')} />
-          <i className="flag nl" onClick={() => this.onLanguageChange('dutch')} />
+          <i
+            className="flag us"
+            onClick={() => this.onLanguageChange('english')}
+            onKeyUp={this.handleKeyUp}
+            role="button"
+            tabIndex="0"
+          />
+          <i
+            className="flag nl"
+            onClick={() => this.onLanguageChange('dutch')}
+            onKeyUp={this.handleKeyUp}
+            role="button"
+            tabIndex="-1"
+          />
         </div>
 
         <ColorContext.Provider value="red">
-          <LanguageContext.Provider value={this.state.language}>
+          <LanguageContext.Provider value={language}>
             <UserCreate />
           </LanguageContext.Provider>
         </ColorContext.Provider>
