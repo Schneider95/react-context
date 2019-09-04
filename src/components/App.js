@@ -1,7 +1,5 @@
 import React from 'react';
-import LanguageContext from '../contexts/LanguageContext';
-import ColorContext from '../contexts/ColorContext';
-import UserCreate from './UserCreate';
+import AppJsx from '../templates/App';
 
 class App extends React.Component {
   state = {
@@ -19,33 +17,13 @@ class App extends React.Component {
   render() {
     const { language } = this.state;
 
-    return (
-      <div className="ui container">
-        <div>
-          Select a language :
-          <i
-            className="flag us"
-            onClick={() => this.onLanguageChange('english')}
-            onKeyUp={this.handleKeyUp}
-            role="button"
-            tabIndex="0"
-          />
-          <i
-            className="flag nl"
-            onClick={() => this.onLanguageChange('dutch')}
-            onKeyUp={this.handleKeyUp}
-            role="button"
-            tabIndex="-1"
-          />
-        </div>
+    const props = {
+      handleKeyUp: this.handleKeyUp,
+      language,
+      onLanguageChange: this.onLanguageChange,
+    };
 
-        <ColorContext.Provider value="red">
-          <LanguageContext.Provider value={language}>
-            <UserCreate />
-          </LanguageContext.Provider>
-        </ColorContext.Provider>
-      </div>
-    );
+    return new AppJsx(props).render();
   }
 }
 
